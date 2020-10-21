@@ -1,0 +1,64 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Author
+
+<h2>Author Details</h2>
+<hr />
+<h3>@Html.DisplayFor(model => model.AuthorName)</h3>
+<div class="row">
+    <div class="col-sm">
+      @if(@Model.Books.Count == 0)
+{
+  <p>no books added.</p>
+}
+else
+{
+  <h4>Books by this author:</h4>
+  <ul>
+  @foreach(var join in Model.Books)
+  {
+    <li>@join.Book.BookName</li>
+    @using (Html.BeginForm("DeleteBook", "Authors"))
+    {
+      @Html.Hidden("joinId", @join.AuthorBookId)
+      <input type="submit" value="Delete"/> // this passes for deleteid
+    }
+  }
+  </ul>
+}<br>
+@if(@Model.Genres.Count == 0)
+{
+  <p>This Author has no genre</p>
+}
+else
+{
+  <h4>Genre this Author belongs to:</h4>
+  <ul>
+  @foreach(var join in Model.Genres)
+  {
+    <li>@join.Genre.GenreName</li>
+    @using (Html.BeginForm("Details", "Authors"))
+    {
+      @Html.Hidden("joinId", @join.AuthorGenreId)
+      <input type="submit" value="Delete"/> // this passes for deleteid
+    }
+  }
+  </ul>
+}
+<br>
+
+<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Edit Author", "Author", new { id = Model.AuthorId }, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Add a Book", "AddBook", new { id = Model.AuthorId }, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Add a Genre", "AddGenre", new { id = Model.AuthorId }, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Delete this Author", "Delete", new { id = Model.AuthorId }, new { @class="btn btn-outline-dark btn-block"})</p>
+    </div>
+    <div class="col-sm">
+
+    </div>
+    <div class="col-sm">
+
+    </div>
+  </div>

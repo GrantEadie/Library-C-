@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Copy;
+
+<h2>Index Details</h2>
+<hr />
+<h3>Index Number: @Html.DisplayFor(model => model.CopyName)</h3>
+
+@if(@Model.Books.Count == 0)
+{
+  <p>There are no books of this copy!</p>
+}
+else
+{
+  <h4>Book Title</h4>
+  @foreach(var join in Model.Books)
+  {
+    <p>@join.Book.BookName</p>
+  }
+}
+
+<p>@Html.ActionLink("Back to copies", "Index", null, null, new  {@class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Edit Copy", "Edit", new { id = Model.CopyId }, new {@class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Delete Copy", "Delete", new { id = Model.CopyId }, new {@class="btn btn-outline-dark btn-block"})</p>

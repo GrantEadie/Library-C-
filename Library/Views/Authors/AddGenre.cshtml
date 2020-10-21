@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Author
+
+<h2>Add an author to a genre</h2>
+
+<h4>Add an author to this genre: @Html.DisplayFor(model => model.AuthorName)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.AuthorId)
+
+    @Html.Label("Select a genre")
+    @Html.DropDownList("GenreId")
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class="btn btn-outline-dark btn-block"})</p>

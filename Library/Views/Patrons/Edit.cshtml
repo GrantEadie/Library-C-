@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Patron
+
+<h2>Edit</h2>
+
+<h4>Edit this Patron: @Html.DisplayFor(model => model.PatronFirstName)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PatronId)
+
+    @Html.LabelFor(model => model.PatronFirstName)
+    @Html.EditorFor(model => model.PatronFirstName)
+    @Html.LabelFor(model => model.PatronLastName)
+    @Html.EditorFor(model => model.PatronLastName)
+
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index", null, null, new {  @class="btn btn-outline-dark btn-block"})</p>

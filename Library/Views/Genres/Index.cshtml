@@ -1,0 +1,31 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Library.Models;
+@model List<Library.Models.Genre>;
+
+<h1>Genres</h1><hr>
+<div class="row">
+    <div class="col-sm">
+      @if (@Model.Count == 0)
+{
+  <h3>No Genres have been added yet!</h3>
+} 
+
+@foreach (Genre genre in Model)
+{
+  <p class="list-details">@Html.ActionLink($"{genre.GenreName}", "Details", new { id = genre.GenreId })</p>
+}
+
+<p>@Html.ActionLink("Add new genre", "Create", null, null, new {  @class="btn btn-outline-dark btn-block"})</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home", null, new {  @class="btn btn-outline-dark btn-block"})</p>
+    </div>
+    <div class="col-sm">
+      
+    </div>
+    <div class="col-sm">
+      
+    </div>
+  </div>

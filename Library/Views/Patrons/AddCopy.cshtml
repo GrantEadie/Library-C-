@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Patron
+
+<h2>Add a copy</h2><hr>
+<div class="row">
+    <div class="col-sm">
+      <h4>@Html.DisplayFor(model => model.PatronFirstName)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PatronId)
+
+    <p>Select copy: </p>
+    @Html.DropDownList("CopyId", null, new {@class="form-control"})<br><br>
+    <p>CheckOut Date</p>
+    @Html.TextBox("dateTime", null, new { @type="datetime-local", @class = "dateInput", @placeholder = "input date" })<br><br>
+
+    <input type="submit" value="Save" class="btn btn-outline-dark btn-block" /><br>
+}
+
+<p>@Html.ActionLink("Back to list", "Index", null, null, new {  @class="btn btn-outline-dark btn-block"})</p>
+    </div>
+    <div class="col-sm">
+      
+    </div>    
+    <div class="col-sm">
+      
+    </div>
+  </div>

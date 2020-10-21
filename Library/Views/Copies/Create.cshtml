@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Copy
+
+<h4>Add a new copy</h4>
+@using (Html.BeginForm())
+{
+    <p>Index number: </p>
+    @Html.TextBoxFor(model => model.CopyName)
+    <input type="submit" value="Add new copy" /><br><br>
+    <p>Book: </p>
+    @Html.DropDownList("BookId", null, new {@class="form-control"})<br>
+}
+<p>@Html.ActionLink("Show all copies", "Index", null, null, new  {@class="btn btn-outline-dark"})</p>

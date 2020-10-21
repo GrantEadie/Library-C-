@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Genre
+
+<h2>Edit</h2>
+
+<h4>Edit this genre: @Html.DisplayFor(model => model.GenreName)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.GenreId)
+
+    @Html.LabelFor(model => model.GenreName)
+    @Html.EditorFor(model => model.GenreName)
+    @Html.LabelFor(model => model.GenreDescription)
+    @Html.EditorFor(model => model.GenreDescription)
+
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to Genres", "Index", null, null, new {  @class="btn btn-outline-dark btn-block"})</p>

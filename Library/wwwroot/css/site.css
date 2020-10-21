@@ -1,0 +1,22 @@
+﻿body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+li {
+  list-style-type: none;
+}
+
+.list-details {
+  font-size:20px;
+  /* display: none; */
+}
+
+.list-details a {
+  color: grey;
+}
+
+.list-details a:hover {
+  text-decoration:none;
+  color:blue;
+
+}

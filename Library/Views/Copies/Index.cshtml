@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Library.Models;
+@model List<Library.Models.Copy>;
+
+<h1>Indexes</h1><hr>
+<div class="row">
+    <div class="col-sm">
+            @using (Html.BeginForm())
+      {
+        @Html.TextBox("Search", null, new { placeholder="enter your index number", @style="width:100%"})<br><br>
+        <input type="submit" value="search indexes" id="copy-button" class="btn btn-outline-info btn-sm btn-block" /><br><br>
+      }
+
+      <p>@Html.ActionLink("Add a new copy", "Create", null, null, new {  @class="btn btn-outline-dark btn-block"})</p>
+
+      <p>@Html.ActionLink("Home", "Index", "Home", null, new {  @class="btn btn-outline-dark btn-block"})</p>
+    </div>
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+    @foreach (Copy copy in Model)
+    {
+      <p class="list-details">@Html.ActionLink($"{copy.CopyName}", "Details", new { id = copy.CopyId })</p>
+    }
+    </div>
+  </div>

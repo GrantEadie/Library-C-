@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Copy
+
+<h2>Edit</h2>
+
+<h4>Edit this copy: @Html.DisplayFor(model => model.CopyName)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.CopyId)
+
+    @Html.LabelFor(model => model.CopyName)
+    @Html.EditorFor(model => model.CopyName)
+
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to copies", "Index", null, null, new  {@class="btn btn-outline-dark btn-block"})</p>

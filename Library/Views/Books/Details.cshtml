@@ -1,0 +1,76 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Book
+
+<h2>Book Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.BookName): @Html.DisplayFor(model => model.BookName)</h3>
+<h3>@Html.DisplayNameFor(model => model.BookDescription): @Html.DisplayFor(model => model.BookDescription)</h3>
+<h3>@Html.DisplayNameFor(model => model.NumberOfBooks): @Html.DisplayFor(model => model.NumberOfBooks)</h3>
+
+@if(@Model.Genres.Count == 0)
+{
+  <p>This book does not belong to any genres</p>
+}
+else
+{
+  <h4>Genre this book belongs to:</h4>
+  <ul>
+  @foreach(var join in Model.Genres)
+  {
+    <li>@join.Genre.GenreName</li>
+    @using (Html.BeginForm("DeleteGenre", "Books"))
+    {
+      @Html.Hidden("joinId", @join.BookGenreId)
+      <input type="submit" value="Delete"/> // this passes for deleteid
+    }
+  }
+  </ul>
+}
+@if(@Model.Authors.Count == 0)
+{
+  <p>This book does not belong to any authors</p>
+}
+else
+{
+  <h4>Authors this book belongs to:</h4>
+  <ul>
+  @foreach(var join in Model.Authors)
+  {
+    <li>@join.Author.AuthorName</li>
+    @using (Html.BeginForm("DeleteAuthor", "Books"))
+    {
+      @Html.Hidden("joinId", @join.AuthorBookId)
+      <input type="submit" value="Delete"/> // this passes for deleteid
+    }
+  }
+  </ul>
+}
+@if(@Model.Copies.Count == 0)
+{
+  <p>This book does not have any copies</p>
+}
+else
+{
+  <h4>Index Number:</h4>
+  <ul>
+  @foreach(var join in Model.Copies)
+  {
+    <li>@join.Copy.CopyName</li>
+    @using (Html.BeginForm("DeleteCopy", "Copies"))
+    {
+      @Html.Hidden("joinId", @join.BookCopyId)
+      <input type="submit" value="Delete"/> // this passes for deleteid
+    }
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Edit Book", "Edit", new { id = Model.BookId }, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Add an Author", "AddAuthor", new { id = Model.BookId },  new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Add a Copy", "AddCopy", new { id = Model.BookId }, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Add a Genre", "AddGenre", new { id = Model.BookId }, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Delete the Book", "Delete", new { id = Model.BookId }, new { @class="btn btn-outline-dark btn-block"})</p>
